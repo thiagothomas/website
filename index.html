@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thiago Thomas - Founding Engineer specializing in AI, Web3, and Full-Stack Development. Building the future with LLMs, blockchain, and autonomous agents.">
+    <title>Thiago Thomas - Software Engineer</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23000'/><text x='50' y='50' font-family='JetBrains Mono, monospace' font-size='45' font-weight='bold' fill='%2300FF00' text-anchor='middle' dominant-baseline='middle'>TT</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Floating Theme Toggle -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle color theme">
+        <i data-lucide="palette" style="width: 20px; height: 20px;"></i>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <div class="nav-logo" data-glitch="TT">TT</div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <canvas class="constellation-canvas" id="constellationCanvas"></canvas>
+        <div class="scanline"></div>
+        <div class="hero-content">
+            <div class="terminal-prefix">thiago@earth:~$</div>
+            <h1 class="hero-title" id="heroTitle"></h1>
+            <p class="hero-subtitle" id="heroSubtitle">Full-Stack Engineer (Backend-Heavy) | AI Agents | Web3 | Crypto | Blockchain</p>
+            <div class="hero-tags">
+                <span class="tag">Full-Stack</span>
+                <span class="tag">AI/ML</span>
+                <span class="tag">Web3</span>
+                <span class="tag">Blockchain</span>
+            </div>
+            <div class="hero-cta">
+                <a href="#contact" class="cta-button">
+                    <span>Get in Touch</span>
+                </a>
+                <a href="assets/docs/resume.pdf" class="cta-button secondary" download>
+                    <span>Download Resume</span>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title" data-glitch="ABOUT">ABOUT</h2>
+            <div class="about-grid">
+                <div class="about-content">
+                    <p class="about-lead" id="aboutLead">Full-Stack Software Engineer with 5+ years of experience, specializing in AI agents, blockchain, and scalable cloud infrastructure.</p>
+                    <p class="about-text">Currently at <strong>Blorm</strong>, a crypto + AI agents startup pioneering autonomous onchain agents and decentralized AI infrastructure. I work across backend (Node.js, NestJS, Python, Express), frontend (Next.js, React, TypeScript, React Native), and scalable cloud infra (GCP, AWS). I also work with TEE protocols like <strong>Phala Network</strong> to push agents into private environments.</p>
+                    <p class="about-text">Pursuing my Master's at <strong>PUCRS</strong>, researching Multi-Agent Reinforcement Learning and Goal Recognition. Before Blorm, I spent 4+ years at SAP, NTT Data (consulting at Itaú Unibanco), and Meta, building enterprise backends (Java, Spring Boot) and frontends (Angular, UI5, TypeScript).</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="5">0</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="4">0</div>
+                            <div class="stat-label">Companies</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-education">
+                    <div class="edu-card">
+                        <a href="https://www.pucrs.br" target="_blank" rel="noopener" class="edu-logo-link">
+                            <img src="assets/images/pucrs.png" alt="PUCRS Logo" class="edu-logo">
+                        </a>
+                        <div class="edu-content">
+                            <h3 class="edu-title">Master of Science - Computer Science</h3>
+                            <a href="https://www.pucrs.br" target="_blank" rel="noopener" class="edu-school-link">
+                                <p class="edu-school">PUCRS - Porto Alegre, RS</p>
+                            </a>
+                            <p class="edu-date">Mar 2025 - Dec 2026</p>
+                            <p class="edu-focus">Research: AI - Goal Recognition, Multi-Agent RL</p>
+                        </div>
+                    </div>
+                    <div class="edu-card">
+                        <a href="https://www.unisinos.br" target="_blank" rel="noopener" class="edu-logo-link">
+                            <img src="assets/images/unisinos-icon.png" alt="Unisinos Logo" class="edu-logo">
+                        </a>
+                        <div class="edu-content">
+                            <h3 class="edu-title">Bachelor of Science - Computer Science</h3>
+                            <a href="https://www.unisinos.br" target="_blank" rel="noopener" class="edu-school-link">
+                                <p class="edu-school">Unisinos - São Leopoldo, RS</p>
+                            </a>
+                            <p class="edu-date">Mar 2020 - Dec 2024</p>
+                            <p class="edu-focus">GPA: 3.65 (9.12/10.0)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience" id="experience">
+        <div class="container">
+            <h2 class="section-title centered" data-glitch="EXPERIENCE">EXPERIENCE</h2>
+            <div class="experience-timeline">
+                <!-- Blorm -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div class="exp-title-group">
+                            <a href="https://blorm.com" target="_blank" rel="noopener" class="company-logo-link">
+                                <img src="assets/images/blorm.jpg" alt="Blorm Logo" class="company-logo">
+                            </a>
+                            <div>
+                                <h3 class="exp-title">Founding Engineer</h3>
+                                <a href="https://blorm.com" target="_blank" rel="noopener" class="exp-company-link">
+                                    <p class="exp-company">Blorm</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="exp-meta">
+                            <span class="exp-location">Remote - California, US</span>
+                            <span class="exp-date">Apr 2025 - Present</span>
+                        </div>
+                    </div>
+                    <div class="exp-highlights">
+                        <div class="highlight-item">
+                            <i data-lucide="trophy" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>Solana Mobile Hackathon Winner:</strong> Top 10 out of 276 submissions, 1,000+ upvotes for innovative Web3 mobile app</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="coins" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>Crypto Payment Rails:</strong> Built Coinbase Onramp API and USDC stablecoin integration for seamless crypto checkout on major e-commerce platforms</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="bot" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>LLM Orchestration Platform:</strong> Architected multi-provider failover system and one-click deployment for Dockerized autonomous agents with vector stores, reducing hallucinations and improving latency</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="globe" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>Web3 Chat Platform:</strong> Built chat-UI with Web3 wallet-connect, on-chain transaction signing, and Twitter-to-NFT minting for viral content monetization</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="zap" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>Decentralized Infrastructure:</strong> Engineered RabbitMQ message queue for async blockchain operations, implemented Phala Network TEE key management, and built multi-platform bot framework (Twitter, Telegram, Discord)</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="users" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>Web3 Onboarding:</strong> Designed automated referral system with smart contract USDC payouts and Crossmint-powered OAuth-to-Web3 onboarding, reducing user friction</span>
+                        </div>
+                    </div>
+                    <div class="exp-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">LangGraph</span>
+                        <span class="tech-tag">Phala TEEs</span>
+                        <span class="tech-tag">MCP</span>
+                        <span class="tech-tag">Next.js 15</span>
+                        <span class="tech-tag">React 18</span>
+                        <span class="tech-tag">Nest.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">Tailwind</span>
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">RabbitMQ</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">GCP</span>
+                    </div>
+                </div>
+
+                <!-- SAP -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div class="exp-title-group">
+                            <a href="https://www.sap.com" target="_blank" rel="noopener" class="company-logo-link">
+                                <img src="assets/images/sap.png" alt="SAP Logo" class="company-logo">
+                            </a>
+                            <div>
+                                <h3 class="exp-title">Software Engineer - Full-Stack</h3>
+                                <a href="https://www.sap.com" target="_blank" rel="noopener" class="exp-company-link">
+                                    <p class="exp-company">SAP</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="exp-meta">
+                            <span class="exp-location">Hybrid - São Leopoldo, RS</span>
+                            <span class="exp-date">Nov 2021 - Apr 2025 (3.5 years)</span>
+                        </div>
+                    </div>
+                    <div class="exp-highlights">
+                        <div class="highlight-item">
+                            <i data-lucide="bar-chart-3" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>SAP Ariba Guided Sourcing:</strong> Full-stack development using Java, Spring Boot, HTML/CSS, TypeScript, Angular, and SQL</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="wrench" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>SAP Ariba Category Management:</strong> Developed new SaaS using Java, Spring Boot, JavaScript, TypeScript, UI5, CAP, BTP, and SQL</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="flask-conical" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>Quality Assurance:</strong> Implemented automated tests with Katalon to ensure quality of new features and identify regressions</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="globe" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>Global Collaboration:</strong> Worked with cross-functional teams (USA/India/Brazil) to ensure seamless integration and deliver high-quality solutions</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="settings" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>Automation:</strong> Developed automated tenant provisioning and integration between different applications</span>
+                        </div>
+                    </div>
+                    <div class="exp-tech">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">UI5</span>
+                        <span class="tech-tag">CAP</span>
+                    </div>
+                </div>
+
+                <!-- NTT DATA -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div class="exp-title-group">
+                            <a href="https://www.nttdata.com" target="_blank" rel="noopener" class="company-logo-link">
+                                <img src="assets/images/ntt-data.png" alt="NTT DATA Logo" class="company-logo">
+                            </a>
+                            <div>
+                                <h3 class="exp-title">Java Developer</h3>
+                                <a href="https://www.nttdata.com" target="_blank" rel="noopener" class="exp-company-link">
+                                    <p class="exp-company">NTT DATA @ Itau Unibanco</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="exp-meta">
+                            <span class="exp-location">Remote</span>
+                            <span class="exp-date">Jul 2021 - Nov 2021</span>
+                        </div>
+                    </div>
+                    <div class="exp-highlights">
+                        <div class="highlight-item">
+                            <i data-lucide="building-2" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>Open Banking/Finance:</strong> Developed Java apps with Spring Boot & hexagonal architecture</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="cloud" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>AWS Infrastructure:</strong> Implemented AWS services & SQS messaging for real-time processing</span>
+                        </div>
+                    </div>
+                    <div class="exp-tech">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">SQS</span>
+                    </div>
+                </div>
+
+                <!-- Meta -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div class="exp-title-group">
+                            <a href="https://www.meta.com.br" target="_blank" rel="noopener" class="company-logo-link">
+                                <img src="assets/images/meta.jpg" alt="Meta Logo" class="company-logo">
+                            </a>
+                            <div>
+                                <h3 class="exp-title">Junior Java Developer</h3>
+                                <a href="https://www.meta.com.br" target="_blank" rel="noopener" class="exp-company-link">
+                                    <p class="exp-company">Meta</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="exp-meta">
+                            <span class="exp-location">Remote - São Leopoldo, RS</span>
+                            <span class="exp-date">Oct 2020 - Jul 2021 (10 months)</span>
+                        </div>
+                    </div>
+                    <div class="exp-highlights">
+                        <div class="highlight-item">
+                            <i data-lucide="shield-check" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>SSO Portal:</strong> Developed Single Sign-On portal for large customer in logistics sector using Java and Spring Boot Framework</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="rocket" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>Agile Development:</strong> Participated in Scrum methodology, solution design, and architecture definitions</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="flask-conical" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>Test-Driven Development:</strong> Implemented TDD with JUnit and Mockito, REST patterns, and comprehensive testing strategies</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i data-lucide="settings" class="highlight-icon"></i>
+                            <span class="highlight-text"><strong>CI/CD Pipeline:</strong> Maintained Jira workflows, Jenkins pipelines, OpenShift deployments, and Git/GitLab version control</span>
+                        </div>
+                    </div>
+                    <div class="exp-tech">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">JUnit</span>
+                        <span class="tech-tag">Mockito</span>
+                        <span class="tech-tag">Jenkins</span>
+                        <span class="tech-tag">OpenShift</span>
+                        <span class="tech-tag">Git/GitLab</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills" id="skills">
+        <div class="container">
+            <h2 class="section-title centered" data-glitch="TECH STACK">TECH STACK</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PHP</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Back-end</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Spring</span>
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Nest.js</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">CAP</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Front-end</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">React Native</span>
+                        <span class="skill-tag">Angular</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">UI5</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title">AI/ML</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">LLM Orchestration</span>
+                        <span class="skill-tag">LangGraph</span>
+                        <span class="skill-tag">AI Agents</span>
+                        <span class="skill-tag">n8n</span>
+                        <span class="skill-tag">MCP Server/Client</span>
+                        <span class="skill-tag">Prompt Engineering</span>
+                        <span class="skill-tag">Vector Databases</span>
+                        <span class="skill-tag">Multi-Agent Systems</span>
+                        <span class="skill-tag">Reinforcement Learning</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Web3/Blockchain</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Solana</span>
+                        <span class="skill-tag">Smart Contracts</span>
+                        <span class="skill-tag">Web3</span>
+                        <span class="skill-tag">NFTs</span>
+                        <span class="skill-tag">USDC</span>
+                        <span class="skill-tag">Ethereum</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Cloud & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">GCP</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">OpenShift</span>
+                        <span class="skill-tag">BTP</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Data & Messaging</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Vector Stores</span>
+                        <span class="skill-tag">RabbitMQ</span>
+                        <span class="skill-tag">SQS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="section philosophy">
+        <div class="container">
+            <div class="philosophy-content">
+                <h2 class="philosophy-title">BUILD THE FUTURE.<br>SHIP FAST. ITERATE.</h2>
+                <p class="philosophy-subtitle">Engineering at the intersection of AI, Web3, and distributed systems.<br>Research-driven. Production-focused. Always learning.</p>
+                <div class="philosophy-list" id="philosophyList">
+                    <div class="philosophy-item">> Believe in building systems that scale, not just prototypes that demo</div>
+                    <div class="philosophy-item">> Believe in open-source collaboration and knowledge sharing</div>
+                    <div class="philosophy-item">> Believe in continuous learning and pushing technological boundaries</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title centered" data-glitch="LET'S CONNECT">LET'S CONNECT</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p class="contact-lead">Open to opportunities in AI/ML, Web3, and full-stack engineering. Let's build something amazing together.</p>
+                <div class="contact-details" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 3rem;">
+                    <a href="mailto:thiagohthomas@gmail.com" class="contact-item">
+                        <i data-lucide="mail" class="contact-icon"></i>
+                        <span class="contact-text">thiagohthomas@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/thiagothomas" target="_blank" rel="noopener" class="contact-item">
+                        <i data-lucide="linkedin" class="contact-icon"></i>
+                        <span class="contact-text">linkedin.com/in/thiagothomas</span>
+                    </a>
+                    <a href="https://github.com/thiagothomas" target="_blank" rel="noopener" class="contact-item">
+                        <i data-lucide="github" class="contact-icon"></i>
+                        <span class="contact-text">github.com/thiagothomas</span>
+                    </a>
+                    <div class="contact-item">
+                        <i data-lucide="map-pin" class="contact-icon"></i>
+                        <span class="contact-text">Brazil (Available for Remote Work Worldwide)</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">THIAGO THOMAS © 2025</div>
+                <div class="footer-tagline">Built with <span class="heart" data-glitch="♥">♥</span> and lots of coffee</div>
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/thiagothomas" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+                    <a href="https://github.com/thiagothomas" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+                    <a href="mailto:thiagohthomas@gmail.com" class="footer-link">Email</a>
+                    <a href="assets/docs/resume.pdf" download class="footer-link">Resume</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/constellation.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
