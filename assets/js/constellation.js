@@ -122,7 +122,15 @@ class UniverseBackground {
 
     addEventListeners() {
         let resizeTimeout;
+        let lastWidth = window.innerWidth;
+
         window.addEventListener('resize', () => {
+            // Only resize if width actually changed (ignore mobile scroll bar changes)
+            const currentWidth = window.innerWidth;
+            if (currentWidth === lastWidth) return;
+
+            lastWidth = currentWidth;
+
             // Debounce resize to avoid creating too many objects
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
