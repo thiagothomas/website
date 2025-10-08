@@ -45,6 +45,7 @@ class UniverseBackground {
     }
 
     createAsteroids() {
+        this.asteroids = [];
         const asteroidCount = window.innerWidth < 768 ? 2 : 4;
         for (let i = 0; i < asteroidCount; i++) {
             this.asteroids.push({
@@ -120,11 +121,16 @@ class UniverseBackground {
     }
 
     addEventListeners() {
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            this.resize();
-            this.particleCount = window.innerWidth < 768 ? 40 : 80;
-            this.createParticles();
-            this.createAsteroids();
+            // Debounce resize to avoid creating too many objects
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                this.resize();
+                this.particleCount = window.innerWidth < 768 ? 40 : 80;
+                this.createParticles();
+                this.createAsteroids();
+            }, 250);
         });
 
         this.canvas.addEventListener('mousemove', (e) => {
