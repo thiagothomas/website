@@ -36,6 +36,7 @@ export default function ResumePage() {
   const ditheringTypes = ["2x2", "3x3", "4x4", "8x8", "ordered", "random"]
 
   const shaders = [
+    // All Dithering variations first
     {
       name: "Dithering",
       component: (
@@ -44,7 +45,7 @@ export default function ResumePage() {
           style={{ height: "100%", width: "100%" }}
           colorBack={isDarkMode ? "hsl(0, 0%, 0%)" : "hsl(0, 0%, 95%)"}
           colorFront={isDarkMode ? "hsl(180, 80%, 50%)" : "hsl(200, 90%, 50%)"}
-          shape="cat"
+          shape="simplex"
           type="4x4"
           pxSize={3}
           offsetX={0}
@@ -52,84 +53,6 @@ export default function ResumePage() {
           scale={0.8}
           rotation={0}
           speed={0.1}
-        />
-      )
-    },
-    {
-      name: "Liquid Metal",
-      component: (
-        <LiquidMetal
-          key={randomSeed}
-          style={{ height: "100%", width: "100%" }}
-          color1={randomColor(isDarkMode)}
-          color2={randomColor(isDarkMode)}
-          speed={random(0.01, 0.1)}
-          scale={random(0.3, 1.5)}
-        />
-      )
-    },
-    {
-      name: "Warp",
-      component: (
-        <Warp
-          key={randomSeed}
-          style={{ height: "100%", width: "100%" }}
-          color1={randomColor(isDarkMode)}
-          color2={randomColor(isDarkMode)}
-          speed={random(0.02, 0.15)}
-          scale={random(0.5, 2)}
-        />
-      )
-    },
-    {
-      name: "Smoke Ring",
-      component: (
-        <SmokeRing
-          key={randomSeed}
-          style={{ height: "100%", width: "100%" }}
-          color1={randomColor(isDarkMode)}
-          color2={isDarkMode ? "hsl(0, 0%, 0%)" : "hsl(0, 0%, 95%)"}
-          speed={random(0.02, 0.1)}
-          scale={random(0.8, 2)}
-        />
-      )
-    },
-    {
-      name: "Perlin Noise",
-      component: (
-        <PerlinNoise
-          key={randomSeed}
-          style={{ height: "100%", width: "100%" }}
-          color1={randomColor(isDarkMode)}
-          color2={randomColor(isDarkMode)}
-          speed={random(0.01, 0.08)}
-          scale={random(2, 6)}
-        />
-      )
-    },
-    {
-      name: "Metaballs",
-      component: (
-        <Metaballs
-          key={randomSeed}
-          style={{ height: "100%", width: "100%" }}
-          color1={randomColor(isDarkMode)}
-          color2={randomColor(isDarkMode)}
-          speed={random(0.05, 0.3)}
-          scale={random(0.5, 3)}
-        />
-      )
-    },
-    {
-      name: "Neural",
-      component: (
-        <NeuroNoise
-          key={randomSeed}
-          style={{ height: "100%", width: "100%" }}
-          color1={randomColor(isDarkMode)}
-          color2={isDarkMode ? "hsl(0, 0%, 0%)" : "hsl(0, 0%, 95%)"}
-          speed={random(0.005, 0.05)}
-          scale={random(1, 5)}
         />
       )
     },
@@ -173,7 +96,7 @@ export default function ResumePage() {
           style={{ height: "100%", width: "100%" }}
           colorBack="transparent"
           colorFront={randomColor(isDarkMode)}
-          shape="sine-wave"
+          shape="wave"
           type="4x4"
           pxSize={random(2, 4)}
           scale={random(0.8, 1.5)}
@@ -182,15 +105,117 @@ export default function ResumePage() {
       )
     },
     {
-      name: "Swirl",
+      name: "Dither Dots",
       component: (
-        <Swirl
+        <Dithering
           key={randomSeed}
           style={{ height: "100%", width: "100%" }}
-          color1={randomColor(isDarkMode)}
-          color2={randomColor(isDarkMode)}
+          colorBack="transparent"
+          colorFront={randomColor(isDarkMode)}
+          shape="dots"
+          type="4x4"
+          pxSize={random(2, 4)}
+          scale={random(0.8, 1.5)}
+          speed={random(0.5, 2)}
+        />
+      )
+    },
+    {
+      name: "Dither Ripple",
+      component: (
+        <Dithering
+          key={randomSeed}
+          style={{ height: "100%", width: "100%" }}
+          colorBack="transparent"
+          colorFront={randomColor(isDarkMode)}
+          shape="ripple"
+          type="8x8"
+          pxSize={random(2, 3)}
+          scale={random(0.8, 1.2)}
+          speed={random(0.5, 2)}
+        />
+      )
+    },
+    {
+      name: "Dither Sphere",
+      component: (
+        <Dithering
+          key={randomSeed}
+          style={{ height: "100%", width: "100%" }}
+          colorBack="transparent"
+          colorFront={randomColor(isDarkMode)}
+          shape="sphere"
+          type="4x4"
+          pxSize={random(2, 4)}
+          scale={random(0.8, 1.5)}
+          speed={random(0.5, 2)}
+        />
+      )
+    },
+    // Other shaders
+    {
+      name: "Liquid Metal",
+      component: (
+        <LiquidMetal
+          key={randomSeed}
+          style={{ height: "100%", width: "100%" }}
           speed={random(0.01, 0.1)}
+          scale={random(0.3, 1.5)}
+        />
+      )
+    },
+    {
+      name: "Warp",
+      component: (
+        <Warp
+          key={randomSeed}
+          style={{ height: "100%", width: "100%" }}
+          speed={random(0.02, 0.15)}
+          scale={random(0.5, 2)}
+        />
+      )
+    },
+    {
+      name: "Smoke Ring",
+      component: (
+        <SmokeRing
+          key={randomSeed}
+          style={{ height: "100%", width: "100%" }}
+          speed={random(0.02, 0.1)}
+          scale={random(0.8, 2)}
+        />
+      )
+    },
+    {
+      name: "Perlin Noise",
+      component: (
+        <PerlinNoise
+          key={randomSeed}
+          style={{ height: "100%", width: "100%" }}
+          speed={random(0.01, 0.08)}
+          scale={random(2, 6)}
+        />
+      )
+    },
+    {
+      name: "Metaballs",
+      component: (
+        <Metaballs
+          key={randomSeed}
+          style={{ height: "100%", width: "100%" }}
+          speed={random(0.05, 0.3)}
           scale={random(0.5, 3)}
+        />
+      )
+    },
+    {
+      name: "Neural",
+      component: (
+        <NeuroNoise
+          key={randomSeed}
+          style={{ height: "100%", width: "100%" }}
+          speed={random(0.005, 0.05)}
+          scale={random(1, 5)}
         />
       )
     },
@@ -200,8 +225,6 @@ export default function ResumePage() {
         <GodRays
           key={randomSeed}
           style={{ height: "100%", width: "100%" }}
-          color1={randomColor(isDarkMode)}
-          color2={isDarkMode ? "hsl(0, 0%, 0%)" : "hsl(0, 0%, 95%)"}
           speed={random(0.01, 0.05)}
           scale={random(0.5, 1.5)}
         />
@@ -213,8 +236,6 @@ export default function ResumePage() {
         <Voronoi
           key={randomSeed}
           style={{ height: "100%", width: "100%" }}
-          colorBack={isDarkMode ? "hsl(0, 0%, 0%)" : "hsl(0, 0%, 95%)"}
-          colorFront={randomColor(isDarkMode)}
           speed={random(0.01, 0.05)}
           scale={random(1, 3)}
         />
@@ -226,11 +247,8 @@ export default function ResumePage() {
         <Water
           key={randomSeed}
           style={{ height: "100%", width: "100%" }}
-          color1={randomColor(isDarkMode)}
-          color2={randomColor(isDarkMode)}
           speed={random(0.5, 2)}
           scale={random(0.3, 1)}
-          amplitude={random(0.3, 0.8)}
         />
       )
     },
@@ -240,9 +258,6 @@ export default function ResumePage() {
         <GrainGradient
           key={randomSeed}
           style={{ height: "100%", width: "100%" }}
-          color1={randomColor(isDarkMode)}
-          color2={randomColor(isDarkMode)}
-          color3={randomColor(isDarkMode)}
           speed={random(0.01, 0.08)}
           scale={random(0.5, 2)}
         />
@@ -258,28 +273,47 @@ export default function ResumePage() {
   return (
     <div className="relative min-h-screen overflow-hidden flex flex-col lg:flex-row">
       <div
-        className={`w-full lg:w-1/2 p-8 font-mono relative z-10 overflow-y-auto ${isDarkMode ? "bg-black text-white" : "bg-white text-black"}`}
+        className={`w-full lg:w-1/2 p-8 font-mono relative z-10 overflow-y-auto transition-all duration-500 ease-in-out ${isDarkMode ? "bg-black text-white" : "bg-white text-black"}`}
       >
         {/* Theme toggle button in top right of left panel */}
         <button
           onClick={() => setIsDarkMode(!isDarkMode)}
-          className={`absolute top-8 right-8 p-2 rounded-full transition-colors ${
+          className={`absolute top-8 right-8 p-2 rounded-full transition-all duration-300 ${
             isDarkMode ? "hover:bg-white/10" : "hover:bg-black/10"
           }`}
           aria-label="Toggle theme"
         >
-          {isDarkMode ? (
-            // Sun icon for light mode
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <div className="relative w-6 h-6">
+            {/* Sun icon */}
+            <svg
+              className={`absolute inset-0 transform transition-all duration-500 ${
+                isDarkMode ? "rotate-0 scale-100 opacity-100" : "-rotate-90 scale-0 opacity-0"
+              }`}
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <circle cx="12" cy="12" r="5" />
               <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
             </svg>
-          ) : (
-            // Moon icon for dark mode
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            {/* Moon icon */}
+            <svg
+              className={`absolute inset-0 transform transition-all duration-500 ${
+                isDarkMode ? "rotate-90 scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"
+              }`}
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
             </svg>
-          )}
+          </div>
         </button>
 
         {/* Header */}
@@ -412,7 +446,7 @@ export default function ResumePage() {
           <div className="flex items-center gap-6">
             <a
               href="mailto:thiagohthomas@gmail.com"
-              className="hover:opacity-70 transition-opacity"
+              className="hover:opacity-70 transition-all duration-300 transform hover:scale-110"
               aria-label="Email"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -424,7 +458,7 @@ export default function ResumePage() {
               href="https://www.linkedin.com/in/thiagothomas"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:opacity-70 transition-opacity"
+              className="hover:opacity-70 transition-all duration-300 transform hover:scale-110"
               aria-label="LinkedIn"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -437,7 +471,7 @@ export default function ResumePage() {
               href="https://github.com/thiagothomas"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:opacity-70 transition-opacity"
+              className="hover:opacity-70 transition-all duration-300 transform hover:scale-110"
               aria-label="GitHub"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -455,11 +489,11 @@ export default function ResumePage() {
         {/* Shader switcher button */}
         <button
           onClick={nextShader}
-          className={`absolute top-8 right-8 px-4 py-2 rounded-full transition-all font-mono text-sm backdrop-blur-md border ${
+          className={`absolute top-8 right-8 px-4 py-2 rounded-full transition-all duration-500 font-mono text-sm backdrop-blur-md border ${
             isDarkMode
               ? "bg-black/50 hover:bg-black/70 text-white border-white/30"
               : "bg-white/50 hover:bg-white/70 text-black border-black/30"
-          } shadow-lg hover:shadow-xl`}
+          } shadow-lg hover:shadow-xl transform hover:scale-105`}
           aria-label="Switch animation"
         >
           <span className="flex items-center gap-2">
