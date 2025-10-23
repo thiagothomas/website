@@ -23,6 +23,23 @@ class Typewriter {
     }
 }
 
+// ===== SECTION THEMES =====
+function applySectionThemeVariables() {
+    const fallbackPrimary = '#00f5ff';
+    const fallbackSecondary = '#9d4edd';
+    const fallbackAccent = '#ffffff';
+
+    document.querySelectorAll('[data-theme-primary]').forEach(section => {
+        const primary = section.getAttribute('data-theme-primary') || fallbackPrimary;
+        const secondary = section.getAttribute('data-theme-secondary') || fallbackSecondary;
+        const accent = section.getAttribute('data-theme-accent') || fallbackAccent;
+
+        section.style.setProperty('--section-primary', primary);
+        section.style.setProperty('--section-secondary', secondary);
+        section.style.setProperty('--section-accent', accent);
+    });
+}
+
 // ===== SCROLL PROGRESS BAR =====
 function updateScrollProgress() {
     const scrollProgress = document.querySelector('.scroll-progress');
@@ -189,7 +206,7 @@ function initContactForm() {
     const inputs = form.querySelectorAll('input, textarea');
     inputs.forEach(input => {
         input.addEventListener('focus', () => {
-            input.style.caretColor = '#00FFFF';
+            input.style.caretColor = '#FFFFFF';
         });
 
         // Prevent any scroll behavior when typing
@@ -357,7 +374,7 @@ function initCustomCursor() {
             position: fixed;
             width: 8px;
             height: 8px;
-            background: var(--accent-cyan);
+            background: #ffffff;
             border-radius: 50%;
             pointer-events: none;
             z-index: 10000;
@@ -438,7 +455,7 @@ function initTechBadgeGlow() {
     setInterval(() => {
         const randomTag = techTags[Math.floor(Math.random() * techTags.length)];
         if (randomTag && randomTag.classList.contains('visible')) {
-            randomTag.style.boxShadow = '0 0 20px rgba(0, 255, 255, 0.4)';
+            randomTag.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.4)';
             setTimeout(() => {
                 randomTag.style.boxShadow = '';
             }, 1000);
@@ -490,7 +507,7 @@ function initTerminalBoot() {
         <div style="opacity: 0; animation: fadeIn 0.3s ease forwards;">$ initializing portfolio...</div>
         <div style="opacity: 0; animation: fadeIn 0.3s ease 0.3s forwards;">$ loading assets...</div>
         <div style="opacity: 0; animation: fadeIn 0.3s ease 0.6s forwards;">$ establishing connection...</div>
-        <div style="opacity: 0; animation: fadeIn 0.3s ease 0.9s forwards; color: #00FFFF;">$ welcome_to_thiago_portfolio</div>
+        <div style="opacity: 0; animation: fadeIn 0.3s ease 0.9s forwards; color: #FFFFFF;">$ welcome_to_thiago_portfolio</div>
     `;
 
     terminal.appendChild(bootText);
@@ -508,6 +525,7 @@ function initTerminalBoot() {
 document.addEventListener('DOMContentLoaded', () => {
     initTerminalBoot();
     initThemeToggle(); // Initialize theme toggle immediately
+    applySectionThemeVariables();
 
     setTimeout(() => {
         initHeroTypewriter();
@@ -546,70 +564,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ===== THEME TOGGLE =====
-const colorThemes = [
-    { name: 'Green Matrix', primary: '#00FF00', secondary: '#39FF14' },
-    { name: 'Cyan & Purple', primary: '#00FFFF', secondary: '#9D4EDD' },
-    { name: 'Hot Pink', primary: '#FF1493', secondary: '#FF69B4' },
-    { name: 'Orange Glow', primary: '#FF6B00', secondary: '#FFA500' },
-    { name: 'Electric Blue', primary: '#0080FF', secondary: '#00D4FF' },
-    { name: 'Neon Yellow', primary: '#FFFF00', secondary: '#FFD700' },
-    { name: 'Red Alert', primary: '#FF0000', secondary: '#FF4444' }
-];
-
-let currentThemeIndex = 0;
-
-function applyTheme(theme) {
-    document.documentElement.style.setProperty('--accent-cyan', theme.primary);
-    document.documentElement.style.setProperty('--accent-purple', theme.secondary);
-
-    // Save to localStorage
-    localStorage.setItem('themeIndex', currentThemeIndex);
-}
-
+// ===== THEME TOGGLE (DISABLED - MONOCHROMATIC ONLY) =====
 function initThemeToggle() {
-    const themeToggle = document.getElementById('themeToggle');
-
-    // Load saved theme
-    const savedThemeIndex = localStorage.getItem('themeIndex');
-    if (savedThemeIndex !== null) {
-        currentThemeIndex = parseInt(savedThemeIndex);
-        applyTheme(colorThemes[currentThemeIndex]);
-    }
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            currentThemeIndex = (currentThemeIndex + 1) % colorThemes.length;
-            applyTheme(colorThemes[currentThemeIndex]);
-
-            // Show theme name briefly
-            const themeName = document.createElement('div');
-            themeName.textContent = colorThemes[currentThemeIndex].name;
-            themeName.style.cssText = `
-                position: fixed;
-                bottom: 90px;
-                right: 30px;
-                background: rgba(0, 0, 0, 0.9);
-                border: 2px solid ${colorThemes[currentThemeIndex].primary};
-                padding: 10px 20px;
-                font-family: 'JetBrains Mono', monospace;
-                font-size: 14px;
-                color: ${colorThemes[currentThemeIndex].primary};
-                z-index: 9999;
-                border-radius: 4px;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            `;
-            document.body.appendChild(themeName);
-
-            setTimeout(() => {
-                themeName.style.opacity = '1';
-            }, 10);
-
-            setTimeout(() => {
-                themeName.style.opacity = '0';
-                setTimeout(() => themeName.remove(), 300);
-            }, 1500);
-        });
-    }
+    // Removed theme toggle functionality - using monochromatic design only
 }

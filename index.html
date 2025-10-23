@@ -13,6 +13,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
+    <canvas id="stellarBackdrop" class="stellar-backdrop"></canvas>
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress"></div>
 
@@ -40,8 +41,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <canvas class="constellation-canvas" id="constellationCanvas"></canvas>
+    <section class="hero" id="hero" data-theme-primary="#ffffff" data-theme-secondary="#cccccc" data-theme-accent="#ffffff">
         <div class="scanline"></div>
         <div class="hero-content">
             <div class="terminal-prefix">thiago@earth:~$</div>
@@ -68,7 +68,7 @@
     </section>
 
     <!-- About Section -->
-    <section class="section about" id="about">
+    <section class="section about" id="about" data-theme-primary="#ffffff" data-theme-secondary="#cccccc" data-theme-accent="#ffffff">
         <div class="container">
             <h2 class="section-title" data-glitch="ABOUT">ABOUT</h2>
             <div class="about-grid">
@@ -120,7 +120,7 @@
     </section>
 
     <!-- Experience Section -->
-    <section class="section experience" id="experience">
+    <section class="section experience" id="experience" data-theme-primary="#ffffff" data-theme-secondary="#cccccc" data-theme-accent="#ffffff">
         <div class="container">
             <h2 class="section-title centered" data-glitch="EXPERIENCE">EXPERIENCE</h2>
             <div class="experience-timeline">
@@ -329,7 +329,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section class="section skills" id="skills">
+    <section class="section skills" id="skills" data-theme-primary="#ffffff" data-theme-secondary="#cccccc" data-theme-accent="#ffffff">
         <div class="container">
             <h2 class="section-title centered" data-glitch="TECH STACK">TECH STACK</h2>
             <div class="skills-grid">
@@ -416,7 +416,7 @@
     </section>
 
     <!-- Philosophy Section -->
-    <section class="section philosophy">
+    <section class="section philosophy" data-theme-primary="#ffffff" data-theme-secondary="#cccccc" data-theme-accent="#ffffff">
         <div class="container">
             <div class="philosophy-content">
                 <h2 class="philosophy-title">BUILD THE FUTURE.<br>SHIP FAST. ITERATE.</h2>
@@ -431,7 +431,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section contact" id="contact">
+    <section class="section contact" id="contact" data-theme-primary="#ffffff" data-theme-secondary="#cccccc" data-theme-accent="#ffffff">
         <div class="container">
             <h2 class="section-title centered" data-glitch="LET'S CONNECT">LET'S CONNECT</h2>
             <div style="max-width: 800px; margin: 0 auto; text-align: center;">
@@ -475,7 +475,8 @@
         </div>
     </footer>
 
-    <script src="assets/js/constellation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="assets/js/three-background.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
         // Initialize Lucide icons
