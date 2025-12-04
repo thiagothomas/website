@@ -237,7 +237,7 @@ function CopyEmailLink() {
   return (
     <motion.button
       onClick={handleCopy}
-      className="group relative inline-flex items-center gap-4 text-3xl sm:text-4xl font-display font-bold"
+      className="group relative inline-flex items-center gap-2 sm:gap-4 text-xl sm:text-3xl lg:text-4xl font-display font-bold"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -272,9 +272,9 @@ function CopyEmailLink() {
 
       {/* Icon - hidden when showing "Copied!" */}
       {!showCopied && (
-        <span className="relative">
+        <span className="relative flex-shrink-0">
           <svg
-            className="w-8 h-8 text-zinc-100 group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-300"
+            className="w-6 h-6 sm:w-8 sm:h-8 text-zinc-100 group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-300"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -1020,10 +1020,10 @@ export default function Portfolio() {
         </section>
 
         {/* Contact/Footer Section */}
-        <section id="contact" className="relative z-10 py-32 px-6 sm:px-12 border-t border-zinc-800/50">
+        <section id="contact" className="relative z-10 py-20 sm:py-32 px-6 sm:px-12 border-t border-zinc-800/50 overflow-hidden">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-16 items-end">
-              <div>
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-end">
+              <div className="min-w-0">
                 <motion.p
                   className="text-violet-400 font-mono text-sm tracking-widest mb-4"
                   initial={{ opacity: 0, y: 20 }}
@@ -1033,7 +1033,7 @@ export default function Portfolio() {
                   LET&apos;S CONNECT
                 </motion.p>
                 <motion.h2
-                  className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold mb-8"
+                  className="text-2xl sm:text-4xl lg:text-6xl font-display font-bold mb-6 sm:mb-8 break-words"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -1042,7 +1042,7 @@ export default function Portfolio() {
                   Have a project in mind?
                 </motion.h2>
                 <motion.p
-                  className="text-xl text-zinc-400 mb-8"
+                  className="text-base sm:text-lg text-zinc-400 mb-6 sm:mb-8 leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -1055,13 +1055,13 @@ export default function Portfolio() {
               </div>
 
               <motion.div
-                className="flex flex-col sm:flex-row lg:flex-col gap-6 lg:items-end"
+                className="flex flex-col gap-4 sm:gap-6 lg:items-end"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
                   {[
                     { href: "https://github.com/thiagothomas", label: "GitHub" },
                     { href: "https://linkedin.com/in/thiagothomas", label: "LinkedIn" },
@@ -1071,7 +1071,7 @@ export default function Portfolio() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-6 py-3 border border-zinc-800 rounded-full text-zinc-400
+                      className="px-4 sm:px-6 py-2 sm:py-3 border border-zinc-800 rounded-full text-zinc-400 text-sm sm:text-base
                                hover:border-violet-400/50 hover:text-violet-400 transition-all duration-300"
                     >
                       {link.label}
@@ -1079,8 +1079,8 @@ export default function Portfolio() {
                   ))}
                 </div>
 
-                <p className="text-zinc-600 text-sm">
-                  © 2025 Thiago Thomas. Built with Next.js, Framer Motion & passion.
+                <p className="text-zinc-600 text-xs sm:text-sm">
+                  © 2025 Thiago Thomas
                 </p>
               </motion.div>
             </div>
