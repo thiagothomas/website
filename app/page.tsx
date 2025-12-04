@@ -8,7 +8,7 @@ import {
 } from "@paper-design/shaders-react"
 
 // Magnetic button effect
-function MagneticButton({ children, href, className = "" }: { children: React.ReactNode; href: string; className?: string }) {
+function MagneticButton({ children, href, className = "", external = true }: { children: React.ReactNode; href: string; className?: string; external?: boolean }) {
   const ref = useRef<HTMLAnchorElement>(null)
   const [position, setPosition] = useState({ x: 0, y: 0 })
 
@@ -26,8 +26,8 @@ function MagneticButton({ children, href, className = "" }: { children: React.Re
     <motion.a
       ref={ref}
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
       className={className}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
@@ -132,12 +132,158 @@ function FloatingParticles() {
   )
 }
 
-// Glitch text effect
-function GlitchText({ text, className = "" }: { text: string; className?: string }) {
+// Scramble text effect - letters change to random symbols then back
+function ScrambleText({ text, className = "" }: { text: string; className?: string }) {
+  const [displayText, setDisplayText] = useState(text)
+  const [isAnimating, setIsAnimating] = useState(false)
+  const symbols = "!@#$%^&*()_+-=[]{}|;:,.<>?/~`0123456789"
+
+  const scramble = () => {
+    if (isAnimating) return
+    setIsAnimating(true)
+
+    const originalLetters = text.split("")
+    let iterations = 0
+    const maxIterations = 10
+
+    const interval = setInterval(() => {
+      setDisplayText(
+        originalLetters
+          .map((letter, i) => {
+            if (iterations > i * 1.5) return letter
+            return symbols[Math.floor(Math.random() * symbols.length)]
+          })
+          .join("")
+      )
+
+      iterations += 1
+
+      if (iterations > maxIterations) {
+        clearInterval(interval)
+        setDisplayText(text)
+        setIsAnimating(false)
+      }
+    }, 50)
+  }
+
   return (
-    <span className={`glitch-text relative inline-block ${className}`} data-text={text}>
-      {text}
+    <span
+      className={`inline-block cursor-default ${className}`}
+      onMouseEnter={scramble}
+    >
+      {displayText}
     </span>
+  )
+}
+
+// Copy email button with feedback (icon version)
+function CopyEmailButton() {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText("thiagohthomas@gmail.com")
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <motion.button
+      onClick={handleCopy}
+      className="relative p-3 rounded-full border border-zinc-800 text-zinc-500 hover:text-violet-400
+               hover:border-violet-400/50 transition-all duration-300"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      {copied ? (
+        <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      ) : (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      )}
+
+      {/* Tooltip */}
+      <motion.span
+        className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-2 py-1 text-xs rounded bg-zinc-800 text-zinc-300 whitespace-nowrap"
+        initial={{ opacity: 0, y: -5 }}
+        animate={{ opacity: copied ? 1 : 0, y: copied ? 0 : -5 }}
+        transition={{ duration: 0.2 }}
+      >
+        Copied!
+      </motion.span>
+    </motion.button>
+  )
+}
+
+// Copy email link with fill animation (for contact section)
+function CopyEmailLink() {
+  const [state, setState] = useState<"idle" | "filling" | "copied" | "unfilling">("idle")
+  const email = "thiagohthomas@gmail.com"
+
+  const handleCopy = async () => {
+    if (state !== "idle") return
+    await navigator.clipboard.writeText(email)
+
+    setState("filling")
+    setTimeout(() => setState("copied"), 600)
+    setTimeout(() => setState("unfilling"), 1800)
+    setTimeout(() => setState("idle"), 2400)
+  }
+
+  const showCopied = state === "copied" || state === "unfilling"
+
+  return (
+    <motion.button
+      onClick={handleCopy}
+      className="group relative inline-flex items-center gap-4 text-3xl sm:text-4xl font-display font-bold"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.3 }}
+    >
+      {/* Text container */}
+      <span className="relative overflow-hidden">
+        {/* Base white text */}
+        <span className="text-zinc-100">
+          {showCopied ? "Copied!" : email}
+        </span>
+
+        {/* Purple fill overlay */}
+        <motion.span
+          className="absolute inset-0 text-violet-400 overflow-hidden pointer-events-none"
+          initial={{ width: "0%" }}
+          animate={{
+            width: state === "filling" || state === "copied" ? "100%" :
+                   state === "unfilling" ? "0%" : "0%"
+          }}
+          transition={{
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1]
+          }}
+          style={{ originX: state === "unfilling" ? 1 : 0 }}
+        >
+          <span className="whitespace-nowrap">
+            {showCopied ? "Copied!" : email}
+          </span>
+        </motion.span>
+      </span>
+
+      {/* Icon - hidden when showing "Copied!" */}
+      {!showCopied && (
+        <span className="relative">
+          <svg
+            className="w-8 h-8 text-zinc-100 group-hover:translate-x-2 group-hover:-translate-y-2 transition-all duration-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+        </span>
+      )}
+    </motion.button>
   )
 }
 
@@ -323,7 +469,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
 
           {/* Resume button in mobile menu */}
           <motion.a
-            href="/Thiago_Thomas_Resume.pdf"
+            href="/resume.pdf"
             className="mt-8 py-3 px-6 text-center font-medium bg-violet-400 text-zinc-950 rounded-full
                      hover:bg-violet-300 transition-all duration-300"
             variants={{
@@ -585,7 +731,7 @@ export default function Portfolio() {
               </nav>
 
               <motion.a
-                href="/Thiago_Thomas_Resume.pdf"
+                href="/resume.pdf"
                 className="hidden md:block px-5 py-2.5 text-sm font-medium bg-violet-400 text-zinc-950 rounded-full
                          hover:bg-violet-300 transition-all duration-300 hover:shadow-[0_0_30px_rgba(167,139,250,0.3)]"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -644,7 +790,7 @@ export default function Portfolio() {
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.8, delay: 1.4 }}
                     >
-                      <GlitchText text="THIAGO" />
+                      <ScrambleText text="THIAGO" />
                     </motion.h1>
                   </div>
                   <div className="overflow-hidden">
@@ -654,7 +800,7 @@ export default function Portfolio() {
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.8, delay: 1.5 }}
                     >
-                      <GlitchText text="THOMAS" />
+                      <ScrambleText text="THOMAS" />
                     </motion.h1>
                   </div>
                 </div>
@@ -678,7 +824,7 @@ export default function Portfolio() {
                   transition={{ duration: 0.8, delay: 1.9 }}
                 >
                   <MagneticButton
-                    href="mailto:thiagohthomas@gmail.com"
+                    href="https://linkedin.com/in/thiagothomas"
                     className="group flex items-center gap-3 px-6 py-3 border border-zinc-700 rounded-full
                              hover:border-violet-400/50 transition-all duration-300"
                   >
@@ -689,21 +835,25 @@ export default function Portfolio() {
                   </MagneticButton>
 
                   <div className="flex items-center gap-4">
-                    {[
-                      { href: "https://github.com/thiagothomas", icon: "M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" },
-                      { href: "https://linkedin.com/in/thiagothomas", icon: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" },
-                    ].map((social, i) => (
-                      <MagneticButton
-                        key={i}
-                        href={social.href}
-                        className="p-3 rounded-full border border-zinc-800 text-zinc-500 hover:text-violet-400
-                                 hover:border-violet-400/50 transition-all duration-300"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d={social.icon} />
-                        </svg>
-                      </MagneticButton>
-                    ))}
+                    <CopyEmailButton />
+                    <MagneticButton
+                      href="https://github.com/thiagothomas"
+                      className="p-3 rounded-full border border-zinc-800 text-zinc-500 hover:text-violet-400
+                               hover:border-violet-400/50 transition-all duration-300"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                      </svg>
+                    </MagneticButton>
+                    <MagneticButton
+                      href="https://linkedin.com/in/thiagothomas"
+                      className="p-3 rounded-full border border-zinc-800 text-zinc-500 hover:text-violet-400
+                               hover:border-violet-400/50 transition-all duration-300"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                      </svg>
+                    </MagneticButton>
                   </div>
                 </motion.div>
               </div>
@@ -901,23 +1051,7 @@ export default function Portfolio() {
                   I&apos;m always open to discussing new opportunities, especially in AI, Web3, and backend engineering.
                 </motion.p>
 
-                <motion.a
-                  href="mailto:thiagohthomas@gmail.com"
-                  className="group inline-flex items-center gap-4 text-3xl sm:text-4xl font-display font-bold text-zinc-100
-                           hover:text-violet-400 transition-colors duration-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 }}
-                >
-                  thiagohthomas@gmail.com
-                  <svg
-                    className="w-8 h-8 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform"
-                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
-                  </svg>
-                </motion.a>
+                <CopyEmailLink />
               </div>
 
               <motion.div
