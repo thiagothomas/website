@@ -189,7 +189,7 @@ function CopyEmailButton() {
   return (
     <motion.button
       onClick={handleCopy}
-      className="relative p-3 rounded-full border border-zinc-800 text-zinc-500 hover:text-violet-400
+      className="relative p-3 rounded-full border border-zinc-700 text-zinc-300 hover:text-violet-400
                hover:border-violet-400/50 transition-all duration-300"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
@@ -338,9 +338,9 @@ function ExperienceCard({
               {sector.split(" · ").map((tag, i) => (
                 <span
                   key={i}
-                  className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider
-                             bg-violet-500/10 text-violet-300/80 border border-violet-500/20
-                             rounded-full backdrop-blur-sm"
+                  className="px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-wider
+                             bg-violet-500/20 text-violet-200 border border-violet-400/30
+                             rounded-full"
                 >
                   {tag}
                 </span>
@@ -348,28 +348,28 @@ function ExperienceCard({
             </div>
           </div>
           <div className="text-right">
-            <p className="text-zinc-400 text-sm tabular-nums">{period}</p>
-            <p className="text-zinc-500 text-xs">{location}</p>
+            <p className="text-zinc-200 text-sm tabular-nums font-medium">{period}</p>
+            <p className="text-zinc-400 text-xs">{location}</p>
           </div>
         </div>
 
         <motion.ul
-          className="space-y-2"
-          animate={{ opacity: isHovered ? 1 : 0.7 }}
+          className="space-y-2.5"
+          animate={{ opacity: isHovered ? 1 : 0.85 }}
           transition={{ duration: 0.2 }}
         >
           {highlights.map((highlight, i) => (
             <motion.li
               key={i}
-              className="text-zinc-400 text-sm leading-relaxed flex gap-3"
+              className="text-zinc-300 text-sm leading-relaxed flex gap-3"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 * i }}
             >
-              <span className="text-violet-400/60 mt-1.5">
-                <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor">
-                  <rect width="8" height="8" />
+              <span className="text-violet-400 mt-1.5">
+                <svg width="6" height="6" viewBox="0 0 6 6" fill="currentColor">
+                  <circle cx="3" cy="3" r="3" />
                 </svg>
               </span>
               {highlight}
@@ -385,9 +385,9 @@ function ExperienceCard({
 function SkillTag({ skill, index }: { skill: string; index: number }) {
   return (
     <motion.span
-      className="relative px-4 py-2 text-sm border border-zinc-700/50 rounded-full text-zinc-300
+      className="relative px-4 py-2 text-sm border border-zinc-600 rounded-full text-zinc-200
                  hover:border-violet-400/50 hover:text-violet-400 transition-all duration-300
-                 hover:shadow-[0_0_20px_rgba(167,139,250,0.15)] cursor-default"
+                 hover:shadow-[0_0_20px_rgba(167,139,250,0.15)] cursor-default bg-zinc-800/30"
       initial={{ opacity: 0, scale: 0.8 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
@@ -448,7 +448,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 text-zinc-400 hover:text-violet-400 transition-colors"
+          className="absolute top-6 right-6 p-2 text-zinc-300 hover:text-violet-400 transition-colors"
           aria-label="Close menu"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -516,7 +516,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
               href="https://github.com/thiagothomas"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full border border-zinc-700 text-zinc-400 hover:text-violet-400
+              className="p-3 rounded-full border border-zinc-600 text-zinc-200 hover:text-violet-400
                        hover:border-violet-400/50 transition-all"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -527,7 +527,7 @@ function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
               href="https://linkedin.com/in/thiagothomas"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full border border-zinc-700 text-zinc-400 hover:text-violet-400
+              className="p-3 rounded-full border border-zinc-600 text-zinc-200 hover:text-violet-400
                        hover:border-violet-400/50 transition-all"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -745,7 +745,7 @@ export default function Portfolio() {
                   <motion.a
                     key={item}
                     href={`#${item.toLowerCase()}`}
-                    className="text-zinc-400 hover:text-violet-400 transition-colors duration-300 relative group"
+                    className="text-zinc-300 hover:text-violet-400 transition-colors duration-300 relative group"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.2 + i * 0.1 }}
@@ -771,7 +771,7 @@ export default function Portfolio() {
 
               {/* Mobile hamburger button */}
               <motion.button
-                className="md:hidden p-2 text-zinc-400 hover:text-violet-400 transition-colors"
+                className="md:hidden p-2 text-zinc-300 hover:text-violet-400 transition-colors"
                 onClick={() => setIsMobileMenuOpen(true)}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -832,15 +832,15 @@ export default function Portfolio() {
                 </div>
 
                 <motion.p
-                  className="text-xl text-zinc-400 max-w-lg leading-relaxed"
+                  className="text-xl text-zinc-300 max-w-lg leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1.7 }}
                 >
                   Building the future at the intersection of{" "}
-                  <span className="text-zinc-100 font-medium">AI</span>,{" "}
-                  <span className="text-zinc-100 font-medium">Web3</span>, and{" "}
-                  <span className="text-zinc-100 font-medium">distributed systems</span>.
+                  <span className="text-white font-medium">AI</span>,{" "}
+                  <span className="text-white font-medium">Web3</span>, and{" "}
+                  <span className="text-white font-medium">distributed systems</span>.
                 </motion.p>
 
                 <motion.div
@@ -855,7 +855,7 @@ export default function Portfolio() {
                              hover:border-violet-400/50 transition-all duration-300"
                   >
                     <span className="text-zinc-300 group-hover:text-violet-400 transition-colors">Let&apos;s talk</span>
-                    <svg className="w-4 h-4 text-zinc-500 group-hover:text-violet-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-zinc-300 group-hover:text-violet-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </MagneticButton>
@@ -864,7 +864,7 @@ export default function Portfolio() {
                     <CopyEmailButton />
                     <MagneticButton
                       href="https://github.com/thiagothomas"
-                      className="p-3 rounded-full border border-zinc-800 text-zinc-500 hover:text-violet-400
+                      className="p-3 rounded-full border border-zinc-700 text-zinc-300 hover:text-violet-400
                                hover:border-violet-400/50 transition-all duration-300"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -873,7 +873,7 @@ export default function Portfolio() {
                     </MagneticButton>
                     <MagneticButton
                       href="https://linkedin.com/in/thiagothomas"
-                      className="p-3 rounded-full border border-zinc-800 text-zinc-500 hover:text-violet-400
+                      className="p-3 rounded-full border border-zinc-700 text-zinc-300 hover:text-violet-400
                                hover:border-violet-400/50 transition-all duration-300"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -906,7 +906,7 @@ export default function Portfolio() {
                     <p className="text-4xl font-display font-bold text-violet-400 mb-2 group-hover:scale-110 transition-transform origin-left">
                       {stat.value}
                     </p>
-                    <p className="text-zinc-500 text-sm">{stat.label}</p>
+                    <p className="text-zinc-300 text-sm">{stat.label}</p>
                   </motion.div>
                 ))}
               </motion.div>
@@ -960,7 +960,7 @@ export default function Portfolio() {
                   </p>
                 </StaggerItem>
                 <StaggerItem>
-                  <p className="text-zinc-400 leading-relaxed">
+                  <p className="text-zinc-300 leading-relaxed">
                     As Co-Founder of a stealth startup, I&apos;m building the future of Agentic Commerce.
                     Previously as Founding Engineer at Blorm, I built autonomous AI agents and decentralized infrastructure,
                     winning Top 10 at the Solana Mobile Hackathon. Before that, I developed enterprise solutions at SAP
@@ -968,7 +968,7 @@ export default function Portfolio() {
                   </p>
                 </StaggerItem>
                 <StaggerItem>
-                  <p className="text-zinc-400 leading-relaxed">
+                  <p className="text-zinc-300 leading-relaxed">
                     I thrive at the intersection of AI, Web3, and distributed systems—building technology
                     that pushes boundaries and creates real impact.
                   </p>
@@ -977,14 +977,14 @@ export default function Portfolio() {
                 <StaggerItem>
                   <div className="pt-8 grid grid-cols-2 gap-8">
                     <div>
-                      <p className="text-zinc-500 text-sm mb-2">Education</p>
-                      <p className="text-zinc-200 font-medium">MSc Computer Science</p>
-                      <p className="text-zinc-400 text-sm">PUCRS · 2025-2026</p>
+                      <p className="text-violet-400/80 text-xs font-mono uppercase tracking-wider mb-2">Education</p>
+                      <p className="text-zinc-100 font-medium">MSc Computer Science</p>
+                      <p className="text-zinc-300 text-sm">PUCRS · 2025-2026</p>
                     </div>
                     <div>
-                      <p className="text-zinc-500 text-sm mb-2">Location</p>
-                      <p className="text-zinc-200 font-medium">Brazil</p>
-                      <p className="text-zinc-400 text-sm">Remote Worldwide</p>
+                      <p className="text-violet-400/80 text-xs font-mono uppercase tracking-wider mb-2">Location</p>
+                      <p className="text-zinc-100 font-medium">Brazil</p>
+                      <p className="text-zinc-300 text-sm">Remote Worldwide</p>
                     </div>
                   </div>
                 </StaggerItem>
@@ -1034,7 +1034,7 @@ export default function Portfolio() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: catIndex * 0.1 }}
                 >
-                  <h3 className="text-zinc-500 text-sm font-mono mb-4 tracking-wide">{category.title}</h3>
+                  <h3 className="text-violet-400/90 text-sm font-mono mb-4 tracking-wider uppercase">{category.title}</h3>
                   <div className="flex flex-wrap gap-3">
                     {category.skills.map((skill, skillIndex) => (
                       <SkillTag key={skillIndex} skill={skill} index={skillIndex + catIndex * 10} />
@@ -1069,7 +1069,7 @@ export default function Portfolio() {
                   Have a project in mind?
                 </motion.h2>
                 <motion.p
-                  className="text-base sm:text-lg text-zinc-400 mb-6 sm:mb-8 leading-relaxed"
+                  className="text-base sm:text-lg text-zinc-300 mb-6 sm:mb-8 leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -1098,7 +1098,7 @@ export default function Portfolio() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-4 sm:px-6 py-2 sm:py-3 border border-zinc-800 rounded-full text-zinc-400 text-sm sm:text-base
+                      className="px-4 sm:px-6 py-2 sm:py-3 border border-zinc-700 rounded-full text-zinc-200 text-sm sm:text-base
                                hover:border-violet-400/50 hover:text-violet-400 transition-all duration-300"
                     >
                       {link.label}
