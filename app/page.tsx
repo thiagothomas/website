@@ -293,6 +293,7 @@ function ExperienceCard({
   role,
   period,
   location,
+  sector,
   highlights,
   index
 }: {
@@ -300,6 +301,7 @@ function ExperienceCard({
   role: string
   period: string
   location: string
+  sector: string
   highlights: string[]
   index: number
 }) {
@@ -332,6 +334,18 @@ function ExperienceCard({
               {company}
             </h4>
             <p className="text-violet-400/80 font-medium">{role}</p>
+            <div className="flex flex-wrap gap-1.5 mt-2">
+              {sector.split(" · ").map((tag, i) => (
+                <span
+                  key={i}
+                  className="px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider
+                             bg-violet-500/10 text-violet-300/80 border border-violet-500/20
+                             rounded-full backdrop-blur-sm"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
           <div className="text-right">
             <p className="text-zinc-400 text-sm tabular-nums">{period}</p>
@@ -574,10 +588,19 @@ export default function Portfolio() {
 
   const experiences = [
     {
+      company: "Stealth Startup",
+      role: "Co-Founder",
+      period: "Oct 2025 — Present",
+      location: "Remote",
+      sector: "Agentic Commerce · AI",
+      highlights: ["Building Agentic Commerce"]
+    },
+    {
       company: "Blorm",
       role: "Founding Engineer",
-      period: "Apr 2025 — Present",
+      period: "Apr 2025 — Oct 2025",
       location: "Remote · California, USA",
+      sector: "Web3 · AI · Blockchain · Crypto",
       highlights: [
         "Solana Mobile Hackathon Winner — Top 10 of 276 submissions with 1,000+ upvotes",
         "Architected LLM orchestration platform with multi-provider failover & intelligent routing",
@@ -592,6 +615,7 @@ export default function Portfolio() {
       role: "Software Engineer",
       period: "Nov 2021 — Apr 2025",
       location: "Hybrid · São Leopoldo, Brazil",
+      sector: "Enterprise Software · Procurement",
       highlights: [
         "SAP Ariba Guided Sourcing: Java, Spring Boot, Angular, TypeScript",
         "SAP Ariba Category Management: TypeScript, UI5, CAP, BTP",
@@ -605,6 +629,7 @@ export default function Portfolio() {
       role: "Java Developer",
       period: "Jul 2021 — Nov 2021",
       location: "Remote · Itaú Unibanco",
+      sector: "Open Banking · Finance",
       highlights: [
         "Open Banking/Finance: Built microservices with Spring Boot & hexagonal architecture",
         "Integrated AWS services with SQS messaging for real-time transaction processing",
@@ -615,6 +640,7 @@ export default function Portfolio() {
       role: "Junior Java Developer",
       period: "Oct 2020 — Jul 2021",
       location: "Remote · São Leopoldo, Brazil",
+      sector: "Enterprise Software · Identity",
       highlights: [
         "Developed enterprise SSO portal using Java and Spring Boot",
         "Maintained Jenkins CI/CD pipelines, deployed on OpenShift",
@@ -935,8 +961,9 @@ export default function Portfolio() {
                 </StaggerItem>
                 <StaggerItem>
                   <p className="text-zinc-400 leading-relaxed">
-                    As a Founding Engineer at Blorm, I build autonomous AI agents and decentralized infrastructure,
-                    winning Top 10 at the Solana Mobile Hackathon. Previously at SAP, I developed enterprise solutions
+                    As Co-Founder of a stealth startup, I&apos;m building the future of Agentic Commerce.
+                    Previously as Founding Engineer at Blorm, I built autonomous AI agents and decentralized infrastructure,
+                    winning Top 10 at the Solana Mobile Hackathon. Before that, I developed enterprise solutions at SAP
                     for global procurement systems serving Fortune 500 companies.
                   </p>
                 </StaggerItem>
