@@ -290,6 +290,7 @@ function CopyEmailLink() {
 // Experience card with hover effect
 function ExperienceCard({
   company,
+  companyUrl,
   role,
   period,
   location,
@@ -298,6 +299,7 @@ function ExperienceCard({
   index
 }: {
   company: string
+  companyUrl?: string
   role: string
   period: string
   location: string
@@ -331,7 +333,11 @@ function ExperienceCard({
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
           <div>
             <h4 className="text-xl font-display font-medium text-zinc-100 group-hover:text-violet-400 transition-colors duration-300">
-              {company}
+              {companyUrl ? (
+                <a href={companyUrl} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  {company}
+                </a>
+              ) : company}
             </h4>
             <p className="text-violet-400/80 font-medium">{role}</p>
             <div className="flex flex-wrap gap-1.5 mt-2">
@@ -588,7 +594,8 @@ export default function Portfolio() {
 
   const experiences = [
     {
-      company: "Stealth Startup",
+      company: "Purch",
+      companyUrl: "http://purch.xyz",
       role: "Co-Founder",
       period: "Oct 2025 — Present",
       location: "Remote",
@@ -961,7 +968,7 @@ export default function Portfolio() {
                 </StaggerItem>
                 <StaggerItem>
                   <p className="text-zinc-300 leading-relaxed">
-                    As Co-Founder of <a href="http://purch.xyz" target="_blank" rel="noopener noreferrer" className="text-violet-400 hover:text-violet-300 transition-colors">purch</a>, I&apos;m building the future of Agentic Commerce.
+                    As Co-Founder of <a href="http://purch.xyz" target="_blank" rel="noopener noreferrer" className="text-violet-400 hover:text-violet-300 transition-colors">Purch</a>, I&apos;m building the future of Agentic Commerce.
                     Previously as Founding Engineer at Blorm, I built autonomous AI agents and decentralized infrastructure,
                     winning Top 10 at the Solana Mobile Hackathon. Before that, I developed enterprise solutions at SAP
                     for global procurement systems serving Fortune 500 companies.
