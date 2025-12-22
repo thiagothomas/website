@@ -961,7 +961,7 @@ export default function Portfolio() {
                 </StaggerItem>
                 <StaggerItem>
                   <p className="text-zinc-300 leading-relaxed">
-                    As Co-Founder of a stealth startup, I&apos;m building the future of Agentic Commerce.
+                    As Co-Founder of <a href="http://purch.xyz" target="_blank" rel="noopener noreferrer" className="text-violet-400 hover:text-violet-300 transition-colors">purch</a>, I&apos;m building the future of Agentic Commerce.
                     Previously as Founding Engineer at Blorm, I built autonomous AI agents and decentralized infrastructure,
                     winning Top 10 at the Solana Mobile Hackathon. Before that, I developed enterprise solutions at SAP
                     for global procurement systems serving Fortune 500 companies.
