@@ -446,7 +446,7 @@ const experiences = [
     companyUrl: "https://nttdata.com/",
     role: "Java Developer",
     period: "Jul 2021 — Nov 2021",
-    location: "Remote · Itau Unibanco",
+    location: "Remote · Brazil",
     sector: "Open Banking · Finance",
     highlights: [
       "Open Banking/Finance: Built microservices with Spring Boot & hexagonal architecture",
