@@ -1,41 +1,11 @@
 import type { Metadata, Viewport } from "next"
-import localFont from "next/font/local"
-import { JetBrains_Mono } from "next/font/google"
+import { GeistSans } from "geist/font/sans"
+import { GeistMono } from "geist/font/mono"
+import { GeistPixelSquare } from "geist/font/pixel"
 import "./globals.css"
 
-// Premium display font - Clash Display for headlines
-const clashDisplay = localFont({
-  src: [
-    {
-      path: "../public/fonts/ClashDisplay-Variable.woff2",
-      style: "normal",
-    },
-  ],
-  variable: "--font-clash-display",
-  display: "swap",
-})
-
-// Modern body font - Satoshi
-const satoshi = localFont({
-  src: [
-    {
-      path: "../public/fonts/Satoshi-Variable.woff2",
-      style: "normal",
-    },
-  ],
-  variable: "--font-satoshi",
-  display: "swap",
-})
-
-// Monospace for code/accents
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-})
-
 export const viewport: Viewport = {
-  themeColor: "#09090b",
+  themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -107,15 +77,18 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.png", type: "image/png" },
     ],
-    apple: [{ url: "/favicon.svg" }],
+    apple: [{ url: "/favicon.png" }],
   },
   manifest: "/site.webmanifest",
   alternates: {
     canonical: "https://thiagothomas.dev",
   },
 }
+
+// Static string with no user input — safe for inline script to prevent theme flash
+const themeScript = `(function(){try{var t=localStorage.getItem("theme");if(t==="light"){document.documentElement.classList.add("light");document.documentElement.style.colorScheme="light";}else{document.documentElement.style.colorScheme="dark";}}catch(e){}})();`
 
 export default function RootLayout({
   children,
@@ -125,14 +98,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${clashDisplay.variable} ${satoshi.variable} ${jetbrainsMono.variable}`}
+      className={`${GeistSans.variable} ${GeistMono.variable} ${GeistPixelSquare.variable}`}
+      style={{ colorScheme: "dark" }}
       suppressHydrationWarning
     >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="font-body antialiased">
+      <body className="font-pixel antialiased">
         {children}
       </body>
     </html>

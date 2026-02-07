@@ -2,17 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------------------------------------------ */
+/* Theme custom properties                                             */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --bg: #000000;
+  --fg: #ffffff;
+  --neutral-300: #d4d4d8;
+  --neutral-400: #a1a1aa;
+  --neutral-500: #71717a;
+  --neutral-600: #52525b;
+  --neutral-800: #27272a;
+  --neutral-950: #09090b;
+  --border: #27272a;
+}
+
+.light {
+  --bg: #ffffff;
+  --fg: #09090b;
+  --neutral-300: #3f3f46;
+  --neutral-400: #52525b;
+  --neutral-500: #71717a;
+  --neutral-600: #a1a1aa;
+  --neutral-800: #e4e4e7;
+  --neutral-950: #f4f4f5;
+  --border: #e4e4e7;
+}
+
 @layer base {
-  :root {
-    --font-display: "Clash Display", sans-serif;
-    --font-body: "Satoshi", sans-serif;
-    --font-mono: "JetBrains Mono", monospace;
-
-    /* Colors */
-    --amber-glow: rgba(167, 139, 250, 0.15);
-    --amber-glow-intense: rgba(167, 139, 250, 0.3);
-  }
-
   * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -23,246 +41,19 @@
   }
 
   body {
-    @apply bg-zinc-950 text-zinc-100;
-    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--fg);
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
   ::selection {
-    @apply bg-violet-400/30 text-violet-100;
-  }
-}
-
-@layer components {
-  /* Glitch effect for hero text */
-  .glitch-text {
-    position: relative;
+    background: var(--fg);
+    color: var(--bg);
   }
 
-  .glitch-text::before,
-  .glitch-text::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-  }
-
-  .glitch-text:hover::before {
-    animation: glitch-1 0.3s linear infinite;
-    color: #ff00ff;
-    opacity: 0.8;
-    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-  }
-
-  .glitch-text:hover::after {
-    animation: glitch-2 0.3s linear infinite;
-    color: #00ffff;
-    opacity: 0.8;
-    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-  }
-
-  @keyframes glitch-1 {
-    0% { transform: translate(0); }
-    20% { transform: translate(-3px, 3px); }
-    40% { transform: translate(-3px, -3px); }
-    60% { transform: translate(3px, 3px); }
-    80% { transform: translate(3px, -3px); }
-    100% { transform: translate(0); }
-  }
-
-  @keyframes glitch-2 {
-    0% { transform: translate(0); }
-    20% { transform: translate(3px, -3px); }
-    40% { transform: translate(3px, 3px); }
-    60% { transform: translate(-3px, -3px); }
-    80% { transform: translate(-3px, 3px); }
-    100% { transform: translate(0); }
-  }
-
-  /* Gradient text */
-  .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
-  }
-
-  /* Animated gradient border */
-  .gradient-border {
-    position: relative;
-    background: linear-gradient(var(--bg-color, #09090b), var(--bg-color, #09090b)) padding-box,
-                linear-gradient(135deg, #a78bfa, #8b5cf6, #7c3aed, #a78bfa) border-box;
-    border: 1px solid transparent;
-    background-size: 100% 100%, 300% 300%;
-    animation: gradient-shift 4s ease infinite;
-  }
-
-  @keyframes gradient-shift {
-    0%, 100% { background-position: 0% 0%, 0% 50%; }
-    50% { background-position: 0% 0%, 100% 50%; }
-  }
-
-  /* Hover glow effect */
-  .glow-hover {
-    transition: all 0.3s ease;
-  }
-
-  .glow-hover:hover {
-    box-shadow: 0 0 30px var(--amber-glow),
-                0 0 60px var(--amber-glow),
-                inset 0 0 30px var(--amber-glow);
-  }
-
-  /* Subtle pulse animation */
-  .pulse-subtle {
-    animation: pulse-subtle 3s ease-in-out infinite;
-  }
-
-  @keyframes pulse-subtle {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-  }
-
-  /* Floating animation */
-  .float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-  }
-
-  /* Shimmer effect */
-  .shimmer {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .shimmer::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(167, 139, 250, 0.1),
-      transparent
-    );
-    animation: shimmer 3s infinite;
-  }
-
-  @keyframes shimmer {
-    0% { left: -100%; }
-    100% { left: 100%; }
-  }
-
-  /* Morphing blob background */
-  .blob {
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    animation: blob-morph 8s ease-in-out infinite;
-  }
-
-  @keyframes blob-morph {
-    0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-    25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
-    50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
-    75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
-  }
-
-  /* Magnetic button base */
-  .magnetic-btn {
-    transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-  }
-
-  /* Text reveal animation */
-  .reveal-text {
-    overflow: hidden;
-  }
-
-  .reveal-text span {
-    display: inline-block;
-    transform: translateY(100%);
-    animation: reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-
-  @keyframes reveal {
-    to { transform: translateY(0); }
-  }
-
-  /* Stagger delay utilities */
-  .stagger-1 { animation-delay: 0.1s; }
-  .stagger-2 { animation-delay: 0.2s; }
-  .stagger-3 { animation-delay: 0.3s; }
-  .stagger-4 { animation-delay: 0.4s; }
-  .stagger-5 { animation-delay: 0.5s; }
-
-  /* Smooth underline animation */
-  .underline-animate {
-    position: relative;
-  }
-
-  .underline-animate::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: currentColor;
-    transition: width 0.3s ease;
-  }
-
-  .underline-animate:hover::after {
-    width: 100%;
-  }
-
-  /* Card hover lift */
-  .card-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .card-lift:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px -20px rgba(167, 139, 250, 0.2);
-  }
-
-  /* Scroll indicator animation */
-  .scroll-indicator {
-    animation: scroll-bounce 2s ease-in-out infinite;
-  }
-
-  @keyframes scroll-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(10px); }
-  }
-
-  /* Line drawing animation */
-  .line-draw {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    animation: line-draw 2s ease forwards;
-  }
-
-  @keyframes line-draw {
-    to { stroke-dashoffset: 0; }
-  }
-
-  /* Grain texture overlay */
-  .grain::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    opacity: 0.02;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    z-index: 1000;
+  button,
+  a {
+    touch-action: manipulation;
   }
 }
 
@@ -277,18 +68,17 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3f3f46;
+  background: var(--neutral-600);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #52525b;
+  background: var(--neutral-500);
 }
 
-/* Firefox scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #3f3f46 transparent;
+  scrollbar-color: var(--neutral-600) transparent;
 }
 
 /* Hide scrollbar on mobile */
@@ -303,15 +93,14 @@
   }
 }
 
-/* Responsive typography */
-@media (max-width: 640px) {
-  .text-8xl {
-    font-size: 3.5rem;
-    line-height: 1;
-  }
-
-  .text-7xl {
-    font-size: 3rem;
-    line-height: 1;
+/* Disable transitions for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
