@@ -278,17 +278,6 @@ function MobileMenu({
               {item}
             </motion.a>
           ))}
-          <motion.a
-            href="/resume.pdf"
-            className="mt-8 py-3 px-6 text-center font-medium bg-[var(--fg)] text-[var(--bg)] rounded-full
-                       hover:opacity-80 transition-opacity min-h-[44px] flex items-center justify-center"
-            variants={{
-              open: { opacity: 1, x: 0, transition: { delay: 0.3 } },
-              closed: { opacity: 0, x: 20 },
-            }}
-          >
-            Resume
-          </motion.a>
         </nav>
       </motion.div>
     </motion.div>
@@ -607,15 +596,6 @@ export default function Portfolio() {
               <div className="hidden md:block">
                 <ThemeToggle theme={theme} toggle={toggleTheme} />
               </div>
-              <a
-                href="/resume.pdf"
-                className="hidden md:flex items-center gap-1.5 px-4 py-2 text-sm font-medium
-                           bg-[var(--fg)] text-[var(--bg)] rounded-full hover:opacity-80 transition-opacity duration-200
-                           focus-visible:ring-2 focus-visible:ring-[var(--neutral-500)] focus-visible:outline-none"
-              >
-                Resume
-                <ExternalLink size={14} />
-              </a>
               <button
                 className="md:hidden p-2 text-[var(--neutral-400)] hover:text-[var(--fg)] transition-colors
                            focus-visible:ring-2 focus-visible:ring-[var(--neutral-500)] focus-visible:outline-none
@@ -684,17 +664,6 @@ export default function Portfolio() {
                     <Contact size={24} />
                   </a>
                   <CopyEmailButton />
-                  <a
-                    href="/resume.pdf"
-                    className="ml-2 inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-medium
-                               border border-[var(--neutral-800)] rounded-full text-[var(--neutral-300)]
-                               hover:text-[var(--fg)] hover:border-[var(--neutral-500)] transition-colors duration-200
-                               focus-visible:ring-2 focus-visible:ring-[var(--neutral-500)] focus-visible:outline-none
-                               min-h-[44px]"
-                  >
-                    Resume
-                    <ExternalLink size={14} />
-                  </a>
                 </div>
               </motion.div>
             </div>
