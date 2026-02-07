@@ -568,7 +568,7 @@ export default function Portfolio() {
         toggleTheme={toggleTheme}
       />
 
-      <div className="relative bg-[var(--bg)] text-[var(--fg)] min-h-screen overflow-x-hidden">
+      <div className="relative bg-[var(--bg)] text-[var(--fg)] min-h-[100dvh] overflow-x-hidden">
         {/* ----------------------------------------------------------------- */}
         {/* Navigation */}
         {/* ----------------------------------------------------------------- */}
@@ -629,7 +629,7 @@ export default function Portfolio() {
           {/* --------------------------------------------------------------- */}
           {/* Hero */}
           {/* --------------------------------------------------------------- */}
-          <section className="min-h-screen flex items-center px-6 sm:px-12">
+          <section className="min-h-[100dvh] flex items-center px-6 sm:px-12">
             <div className="max-w-6xl mx-auto w-full pt-24 pb-20">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
