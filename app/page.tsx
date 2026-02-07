@@ -423,6 +423,7 @@ const experiences = [
   },
   {
     company: "Blorm",
+    companyUrl: "https://blorm.com/",
     role: "Founding Engineer",
     period: "Apr 2025 — Oct 2025",
     location: "Remote · California, USA",
@@ -438,6 +439,7 @@ const experiences = [
   },
   {
     company: "SAP",
+    companyUrl: "https://www.sap.com/",
     role: "Software Engineer",
     period: "Nov 2021 — Apr 2025",
     location: "Hybrid · Brazil",
@@ -452,6 +454,7 @@ const experiences = [
   },
   {
     company: "NTT DATA",
+    companyUrl: "https://nttdata.com/",
     role: "Java Developer",
     period: "Jul 2021 — Nov 2021",
     location: "Remote · Itau Unibanco",
@@ -463,6 +466,7 @@ const experiences = [
   },
   {
     company: "Meta IT",
+    companyUrl: "https://meta.com.br/",
     role: "Junior Java Developer",
     period: "Oct 2020 — Jul 2021",
     location: "Remote · Brazil",
